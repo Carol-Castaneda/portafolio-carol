@@ -60,7 +60,7 @@ svg,img { max-width: 100%; height: auto; }
 .ds-numbervalulist li{ margin-right: 60px; }
 .ds-numbervalulist li:last-child{ margin-right: 0; }
 .ds-numbervalulist strong{ display: block; color: #F26464; font-size: 36px; font-weight: 800; }
-.ds-numbervalulist span{ font-size: 16px; letter-spacing: 1px; }
+.ds-numbervalulist span{ font-size: 14px; letter-spacing: 1px; }
 /*-----------------------------------------------------------------
   3. >>> About Style
 ----------------------------------------------------------------*/
@@ -162,7 +162,7 @@ span.ds-department{ color: #373737; font-weight: 500; font-size: 18px; padding-b
 	.ds-numbervalulist{ margin-top: 20px; }
 	.ds-numbervalulist li{ margin-right: 30px; }
 	.ds-numbervalulist strong{ font-size: 30px; }
-	.ds-numbervalulist span{ font-size: 14px; }
+	.ds-numbervalulist span{ font-size: 12px; }
 	.ds-about-section{ padding-bottom: 60px; }
 	.ds-about-section p,.ds-work-content-sec p,.ds-work-content-sec li{ font-size: 15px; line-height: 30px;margin-bottom: 30px; }
 	.ds-skills-list li{ margin-right: 10px; margin-bottom: 10px; font-size: 14px; }
@@ -267,6 +267,10 @@ body {
     margin: 0; /* Remueve cualquier margen que cause espacio adicional */
 }
 
+.navbar-toggler {
+    display: none; /* hide by default */
+  }
+
 
 /* Resolución estándar de escritorio (1366 x 768 px) */
 @media (min-width: 1024px) {
@@ -289,9 +293,9 @@ body {
 }
 
 /* Tableta en Modo Vertical (768 x 1024 px) */
-@media (min-width: 768px) or (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .ds-header {
-        padding: 30px 0;
+        padding: 5px 0;
 		position: fixed;
         top: 0;
         width: 100%;
@@ -305,7 +309,7 @@ body {
     .ds-banner {
         padding-left: 20px;
         padding-right: 20px;
-		padding-top: 100px;
+		padding-top: 10px;
         z-index: 1;
     }
 
@@ -327,129 +331,102 @@ body {
 
 /* Ajustes para pantallas pequeñas (smartphones) */
 @media (max-width: 768px) {
-	body, html {
-        overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+    body, html {
+      overflow-x: hidden; /* Oculta el desbordamiento horizontal */
     }
-
-	.ds-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px 0;
-		width: 100%;
-    }
-
-	.ds-header,
-    .ds-header.ds-fixed-header {
-        padding: 5px 0;  /* Reduce el padding para disminuir el espacio */
+  
+    .ds-header {
+        position: relative; /* Establece una posición relativa para el posicionamiento absoluto del menú */
+        z-index: 1050; /* Asegura que el header esté por encima de otros contenidos, pero debajo del menú desplegable */
     }
 
     .navbar {
-        display: block; /* Initially hidden until toggled */
-        order: 4; /* Ensures menu is below all other items */
-        width: 100%;
-		margin-top: 5px;
-		text-align: center;
+        width: 100%; /* Asegura que ocupe todo el ancho disponible */
+        padding: 0; /* Elimina el padding que pueda desplazar los elementos */
     }
 
     .navbar-toggler {
-        display: block; /* Ensure it's always visible on mobile */
-        order: 2; /* Positions below the logo */
-        margin-top: 5px; /* Spacing between logo and button */
+        position: absolute;
+        top: 10px; /* Ajusta según sea necesario */
+        left: 10px; /* Alinea el botón a la derecha */
+        z-index: 1051; /* Asegura que el botón esté por encima del menú */
     }
 
-	.navbar-collapse {
-        background-color: white; /* Asegura que el fondo sea sólido para mejorar la visibilidad */
-        padding: 10px; /* Añade padding para evitar que el texto toque los bordes */
-		display: none;
+    .navbar-collapse {
+        position: absolute;
+        top: 48px; /* Ajusta según la altura de tu navbar-toggler */
+        left: 0; /* Alinea el menú desplegable a la izquierda */
+        width: 100%; /* Asegura que el menú desplegable tome todo el ancho */
+        background-color: #FFF; /* Fondo blanco para legibilidad */
+        border-top: 1px solid #ccc; /* Añade un borde superior para definir el área del menú */
+        z-index: 1050; /* Asegura que el menú desplegable esté por encima de otros contenidos */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Opcional: añade sombra para mejorar la visibilidad */
     }
 
-	.navbar-collapse.show {
-        display: block; /* Muestra el menú cuando se despliega */
+    .navbar-nav {
+        display: flex; /* Asegura que el contenedor use flexbox */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        align-items: center; /* Centra los elementos verticalmente */
+        width: 100%; /* Opcional: si quieres que el nav ocupe todo el ancho disponible */
     }
-
-	.nav-link {
-        font-size: 14px; /* Reduce el tamaño del texto para mejor ajuste */
-		display: block;
-		margin: 5px 0;
+    
+    .navbar-nav .nav-link {
+        font-size: 0.8em; /* Mantiene tu ajuste de tamaño de fuente */
+        text-align: center; /* Asegura que el texto dentro de cada enlace esté centrado */
+        padding: 10px 15px; /* Ajusta el padding para dar más espacio alrededor del texto */
+        width: 100%; /* Opcional: si quieres que cada enlace ocupe todo el ancho del contenedor */
     }
 
     .ds-logo {
-        font-size: 12px;
-        order: 1;
-        flex-grow: 1;
-		margin-bottom: 5px; /* Ajusta el margen */
+        display: inline-flex; /* Usa flex para mantener los elementos en línea */
+        align-items: center; /* Alinea verticalmente los elementos */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        width: auto; /* Permite que el logo ajuste su ancho */
+        font-size: 16px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
+        padding: 5px; /* Pequeño padding para evitar tocar los bordes */
     }
-
+  
     .ds-social {
-        margin-top: 10px; /* Adds space above social icons */
-        order: 3;
-        display: flex;
-        margin-left: auto; /* Aligns to the right */
+        display: flex; /* Usa flex para la disposición de íconos */
+        align-items: center; /* Alineación vertical de íconos */
+        justify-content: flex-end; /* Alinea íconos a la derecha */
+        position: absolute;
+        right: 10px; /* Espaciado desde la derecha */
+        top: 50%; /* Centrado verticalmente */
+        transform: translateY(-50%); /* Ajuste fino de la posición vertical */
+        z-index: 1050; /* Asegura que los íconos estén por encima del menú desplegable */
     }
-
+  
     .ds-social li {
-        margin-left: 8px; /* Reduces margin between icons */
+      margin-left: 8px; 
     }
-
+  
     .ds-social li a {
-        width: 20px; /* Reduces size of icons */
-        height: 20px; /* Reduces size of icons */
-        font-size: 14px; /* Adjusts icon size */
+      width: 20px; /* Reduces size of icons */
+      height: 20px; /* Reduces size of icons */
+      font-size: 14px; /* Adjusts icon size */
     }
-
+  
     .ds-banner section h1 {
-        font-size: 24px;
+      font-size: 24px;
     }
-
+  
     .ds-numbervalulist li {
-        margin-right: 20px;
+      margin-right: 20px;
     }
-
+  
     .ds-skills-list li,
     .ds-experience-list ul li,
     .ds-studies-list ul li {
-        font-size: 13px; /* Smaller font size for <li> */
-        line-height: 1.5; /* Line spacing for better readability */
+      font-size: 13px; /* Smaller font size for <li> */
+      line-height: 1.5; /* Line spacing for better readability */
     }
-
+  
     .ds-about-section p,
     .ds-experience-list p,
     .ds-studies-list p,
     .ds-work-list p {
-        font-size: 16px; /* Larger font size for <p> */
-        line-height: 1.6; /* Line spacing for <p> */
-    }
-
-    .ds-studies-list section, .ds-experience-list section {
-        padding-right: 0px; /* Adjust or remove if necessary */
-        padding-left: 0px; /* Ensures both have the same padding */
-        margin: 0 auto; /* Centers the content if necessary */
-        width: 100%; /* Ensure full width */
-    }
-
-
-    .section {
-        flex-direction: column;
-    }
-
-    .ds-footer section h4 {
-        font-size: 28px;
-    }
-
-    .ds-footer {
-        padding: 30px 10px;
-    }
-
-    .ds-work-list {
-        padding: 10px;
-    }
-
-    .ds-work-tilte {
-        font-size: 20px;
-    }
-
-    .ds-footer section {
-        padding-bottom: 20px;
+      font-size: 16px; /* Larger font size for <p> */
+      line-height: 1.6; /* Line spacing for <p> */
     }
 }
